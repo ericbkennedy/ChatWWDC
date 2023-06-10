@@ -13,6 +13,9 @@
 		8034C5532A34DEC0007F205A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8034C5522A34DEC0007F205A /* Preview Assets.xcassets */; };
 		8034C5552A34DEC0007F205A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5542A34DEC0007F205A /* Persistence.swift */; };
 		8034C5582A34DEC0007F205A /* ChatWWDC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5562A34DEC0007F205A /* ChatWWDC.xcdatamodeld */; };
+		8034C55F2A34E026007F205A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C55E2A34E026007F205A /* ChatViewModel.swift */; };
+		8034C5612A34E040007F205A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5602A34E040007F205A /* OpenAIService.swift */; };
+		8034C5632A34E05A007F205A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5622A34E05A007F205A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		8034C5522A34DEC0007F205A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8034C5542A34DEC0007F205A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8034C5572A34DEC0007F205A /* ChatWWDC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatWWDC.xcdatamodel; sourceTree = "<group>"; };
+		8034C55E2A34E026007F205A /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		8034C5602A34E040007F205A /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		8034C5622A34E05A007F205A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +61,11 @@
 		8034C54A2A34DEBF007F205A /* ChatWWDC */ = {
 			isa = PBXGroup;
 			children = (
+				8034C5622A34E05A007F205A /* Constants.swift */,
 				8034C54B2A34DEBF007F205A /* ChatWWDCApp.swift */,
 				8034C54D2A34DEBF007F205A /* ContentView.swift */,
+				8034C55E2A34E026007F205A /* ChatViewModel.swift */,
+				8034C5602A34E040007F205A /* OpenAIService.swift */,
 				8034C54F2A34DEC0007F205A /* Assets.xcassets */,
 				8034C5542A34DEC0007F205A /* Persistence.swift */,
 				8034C5562A34DEC0007F205A /* ChatWWDC.xcdatamodeld */,
@@ -146,7 +155,10 @@
 				8034C5552A34DEC0007F205A /* Persistence.swift in Sources */,
 				8034C54E2A34DEBF007F205A /* ContentView.swift in Sources */,
 				8034C5582A34DEC0007F205A /* ChatWWDC.xcdatamodeld in Sources */,
+				8034C55F2A34E026007F205A /* ChatViewModel.swift in Sources */,
+				8034C5632A34E05A007F205A /* Constants.swift in Sources */,
 				8034C54C2A34DEBF007F205A /* ChatWWDCApp.swift in Sources */,
+				8034C5612A34E040007F205A /* OpenAIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,8 +293,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -310,8 +322,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -11,6 +11,8 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
+    @ObservedObject var chatViewModel = ChatViewModel()
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
@@ -18,30 +20,65 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+            VStack {
+                ScrollViewReader { scrollView in
+                    ScrollView(.vertical) { // User must scroll off the top to enable programmatic scrolling
+                        VStack {
+                            ForEach(chatViewModel.messages.filter({$0.role != .system}),
+                                    id: \.id)
+                            { message in
+                                messageView(message: message)
+                            }
+                            // For CoreData support, use .onDelete(perform: deleteItems)
+                        }.id("VStackInScrollView")
+                    }.onChange(of: chatViewModel.totalResponseCount) { _ in
+                        withAnimation {
+                            scrollView.scrollTo("VStackInScrollView", anchor: .bottom)
+                        }
+                    }
+                }
+                HStack {
+                    TextField("Enter a message",
+                              text: $chatViewModel.currentInput,
+                              axis: .vertical )
+                    .lineLimit(2...10)
+                    .onSubmit {
+                        chatViewModel.sendMessage() // enables submit on return key press
+                    }
+                    .padding()
+                    .textFieldStyle(.roundedBorder)
+                    Button {
+                        chatViewModel.sendMessage()
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                        Text("Send")
                     }
                 }
             }
-            Text("Select an item")
+            .padding()
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
         }
     }
 
+    func messageView(message: Message) -> some View {
+        HStack {
+            if message.role == .user { Spacer() }
+            Text(message.content)
+                .padding()
+                .background(message.role == .user ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
+                .cornerRadius(15.0)
+            if message.role == .assistant { Spacer() }
+        }
+    }
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
