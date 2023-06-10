@@ -27,15 +27,12 @@ class ChatViewModel : ObservableObject {
         let pendingMessageIndex = messages.count - 1
     
         Task {
-            let response = await openAIService.sendMessages(messages: [userMessage])
-            
-            DispatchQueue.main.async {
-                var responseMessage = "No response received"
-                if let receivedOpenAIMessage = response?.choices.first?.message {
-                    responseMessage = receivedOpenAIMessage.content
+            await openAIService.send(messages: [userMessage],
+                                     streamCompletion: { newText in
+                DispatchQueue.main.async {
+                    self.updatePendingMessageWithString(newText, pendingMessageIndex: pendingMessageIndex)
                 }
-                self.updatePendingMessageWithString(responseMessage, pendingMessageIndex: pendingMessageIndex)
-            }
+            })
         }
     }
     

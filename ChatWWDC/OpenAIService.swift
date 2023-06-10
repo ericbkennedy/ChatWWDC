@@ -11,8 +11,9 @@ class OpenAIService {
     private let endpoint = "https://api.openai.com/v1/chat/completions"
     private let model = "gpt-3.5-turbo"
     
-    func sendMessages(messages: [Message]) async -> ChatGPTResponse? {
-        guard let endpointURL = URL(string: endpoint) else { return nil }
+    /// Send messages and handle streaming responses with streamCompletion
+    func send(messages: [Message], streamCompletion: @escaping (String) -> Void) async {
+        guard let endpointURL = URL(string: endpoint) else { return }
         
         // only send supported message fields (role, content, name) to OpenAI
         let trimmedMessages = messages.map({ ChatGPTMessage(role: $0.role, content: $0.content) })
@@ -29,16 +30,32 @@ class OpenAIService {
             
             request.httpBody = try JSONEncoder().encode(requestBody)
             
-            let (responseData, _) = try await URLSession.shared.data(for: request)
+            let (stream, _) = try await URLSession.shared.bytes(for: request)
             
-            let chatResponse = try JSONDecoder().decode(ChatGPTResponse.self, from: responseData)
-            
-            return chatResponse
+            for try await line in stream.lines {
+                guard let message = parse(line) else { continue }
+                
+                print(message, terminator: "")
+                streamCompletion(message)
+            }
         } catch {
             print("Error occurred \(error)")
         }
-        
-        return nil
+    }
+    
+    /// Parse a line from the stream and extract the message
+    func parse(_ line: String) -> String? {
+        let components = line.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true)
+        guard components.count == 2, components[0] == "data" else { return nil }
+
+        let message = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
+
+        if message == "[DONE]" { // ChatGPT stream terminator
+            return ""
+        } else {
+            let chunk = try? JSONDecoder().decode(ChatGPTResponse.self, from: message.data(using: .utf8)!)
+           return chunk?.choices.first?.delta.content
+        }
     }
 }
 
@@ -56,7 +73,7 @@ struct ChatGPTMessage: Codable  {
 struct ChatGPTRequest: Encodable {
     let model: String
     let messages: [ChatGPTMessage]
-    let stream = false
+    let stream = true
 }
 
 struct ChatGPTResponse: Decodable {
@@ -64,6 +81,9 @@ struct ChatGPTResponse: Decodable {
 }
 
 struct ChatGPTChoice: Decodable {
-    let message: ChatGPTMessage
+    struct Delta: Decodable {
+      let role: String?
+      let content: String?
+    }
+    let delta: Delta
 }
-
