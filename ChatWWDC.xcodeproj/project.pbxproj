@@ -16,6 +16,8 @@
 		8034C55F2A34E026007F205A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C55E2A34E026007F205A /* ChatViewModel.swift */; };
 		8034C5612A34E040007F205A /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5602A34E040007F205A /* OpenAIService.swift */; };
 		8034C5632A34E05A007F205A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5622A34E05A007F205A /* Constants.swift */; };
+		8034C5652A34FC7F007F205A /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5642A34FC7F007F205A /* WebViewModel.swift */; };
+		8034C5672A34FC91007F205A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5662A34FC91007F205A /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		8034C55E2A34E026007F205A /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8034C5602A34E040007F205A /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		8034C5622A34E05A007F205A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8034C5642A34FC7F007F205A /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		8034C5662A34FC91007F205A /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		8034C56C2A350120007F205A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +66,11 @@
 		8034C54A2A34DEBF007F205A /* ChatWWDC */ = {
 			isa = PBXGroup;
 			children = (
-				8034C5622A34E05A007F205A /* Constants.swift */,
 				8034C54B2A34DEBF007F205A /* ChatWWDCApp.swift */,
-				8034C54D2A34DEBF007F205A /* ContentView.swift */,
-				8034C55E2A34E026007F205A /* ChatViewModel.swift */,
-				8034C5602A34E040007F205A /* OpenAIService.swift */,
-				8034C54F2A34DEC0007F205A /* Assets.xcassets */,
-				8034C5542A34DEC0007F205A /* Persistence.swift */,
-				8034C5562A34DEC0007F205A /* ChatWWDC.xcdatamodeld */,
+				8034C5702A350239007F205A /* Views */,
+				8034C56E2A3501C2007F205A /* ViewModels */,
+				8034C56F2A3501E0007F205A /* Models */,
+				8034C56C2A350120007F205A /* Info.plist */,
 				8034C5512A34DEC0007F205A /* Preview Content */,
 			);
 			path = ChatWWDC;
@@ -80,6 +82,36 @@
 				8034C5522A34DEC0007F205A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8034C56E2A3501C2007F205A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8034C55E2A34E026007F205A /* ChatViewModel.swift */,
+				8034C5642A34FC7F007F205A /* WebViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8034C56F2A3501E0007F205A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8034C5602A34E040007F205A /* OpenAIService.swift */,
+				8034C54F2A34DEC0007F205A /* Assets.xcassets */,
+				8034C5542A34DEC0007F205A /* Persistence.swift */,
+				8034C5622A34E05A007F205A /* Constants.swift */,
+				8034C5562A34DEC0007F205A /* ChatWWDC.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8034C5702A350239007F205A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8034C54D2A34DEBF007F205A /* ContentView.swift */,
+				8034C5662A34FC91007F205A /* WebView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +185,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8034C5552A34DEC0007F205A /* Persistence.swift in Sources */,
+				8034C5652A34FC7F007F205A /* WebViewModel.swift in Sources */,
+				8034C5672A34FC91007F205A /* WebView.swift in Sources */,
 				8034C54E2A34DEBF007F205A /* ContentView.swift in Sources */,
 				8034C5582A34DEC0007F205A /* ChatWWDC.xcdatamodeld in Sources */,
 				8034C55F2A34E026007F205A /* ChatViewModel.swift in Sources */,
@@ -290,6 +324,7 @@
 				DEVELOPMENT_TEAM = KGH5A5RXPH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChatWWDC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -319,6 +354,7 @@
 				DEVELOPMENT_TEAM = KGH5A5RXPH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChatWWDC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

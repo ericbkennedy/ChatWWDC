@@ -13,6 +13,7 @@ struct ContentView: View {
 
     @ObservedObject var chatViewModel = ChatViewModel()
     
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
@@ -24,6 +25,8 @@ struct ContentView: View {
                 ScrollViewReader { scrollView in
                     ScrollView(.vertical) { // User must scroll off the top to enable programmatic scrolling
                         VStack {
+                            WebView()
+                            .frame(height: 300)
                             ForEach(chatViewModel.messages.filter({$0.role != .system}),
                                     id: \.id)
                             { message in
