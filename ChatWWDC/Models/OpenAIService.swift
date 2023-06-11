@@ -31,12 +31,10 @@ class OpenAIService {
             request.httpBody = try JSONEncoder().encode(requestBody)
             
             let (stream, _) = try await URLSession.shared.bytes(for: request)
-            
             for try await line in stream.lines {
-                guard let message = parse(line) else { continue }
-                
-                print(message, terminator: "")
-                streamCompletion(message)
+                if let message = parse(line) { // 1st stream response is missing delta.content (has .role instead)
+                    streamCompletion(message)
+                }
             }
         } catch {
             print("Error occurred \(error)")
@@ -54,7 +52,7 @@ class OpenAIService {
             return ""
         } else {
             let chunk = try? JSONDecoder().decode(ChatGPTResponse.self, from: message.data(using: .utf8)!)
-           return chunk?.choices.first?.delta.content
+            return chunk?.choices.first?.delta.content
         }
     }
 }
@@ -77,13 +75,15 @@ struct ChatGPTRequest: Encodable {
 }
 
 struct ChatGPTResponse: Decodable {
+    struct ChatGPTChoice: Decodable {
+        struct Delta: Decodable {// Note JSON response will include either role or content so the types are optional String
+            let role: String?    // Sent only in 1st stream response  "choices":[{"delta":{"role":"assistant"},"index":0,"finish_reason":null}]}
+            let content: String? // Sent only in subsequent responses "choices":[{"delta":{"content":" AI"},"index":0,"finish_reason":null}]}
+        }
+        
+        let delta: Delta
+    }
+    
     let choices: [ChatGPTChoice]
 }
 
-struct ChatGPTChoice: Decodable {
-    struct Delta: Decodable {
-      let role: String?
-      let content: String?
-    }
-    let delta: Delta
-}

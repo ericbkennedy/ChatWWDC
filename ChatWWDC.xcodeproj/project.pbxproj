@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8003DBA12A351BC4004F2C41 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DBA02A351BC4004F2C41 /* ShareViewController.swift */; };
+		8003DBA82A351BC4004F2C41 /* ShareWWDC.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8003DB9E2A351BC4004F2C41 /* ShareWWDC.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8034C54C2A34DEBF007F205A /* ChatWWDCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C54B2A34DEBF007F205A /* ChatWWDCApp.swift */; };
 		8034C54E2A34DEBF007F205A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C54D2A34DEBF007F205A /* ContentView.swift */; };
 		8034C5502A34DEC0007F205A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8034C54F2A34DEC0007F205A /* Assets.xcassets */; };
@@ -20,7 +22,36 @@
 		8034C5672A34FC91007F205A /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034C5662A34FC91007F205A /* WebView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8003DBA62A351BC4004F2C41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8034C5402A34DEBF007F205A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8003DB9D2A351BC4004F2C41;
+			remoteInfo = ShareWWDC;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8003DBA92A351BC4004F2C41 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8003DBA82A351BC4004F2C41 /* ShareWWDC.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8003DB9E2A351BC4004F2C41 /* ShareWWDC.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareWWDC.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8003DBA02A351BC4004F2C41 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		8003DBA52A351BC4004F2C41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8003DBAD2A351CBE004F2C41 /* ShareWWDC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareWWDC.entitlements; sourceTree = "<group>"; };
+		8003DBAE2A351CE3004F2C41 /* ChatWWDC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChatWWDC.entitlements; sourceTree = "<group>"; };
 		8034C5482A34DEBF007F205A /* ChatWWDC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatWWDC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8034C54B2A34DEBF007F205A /* ChatWWDCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWWDCApp.swift; sourceTree = "<group>"; };
 		8034C54D2A34DEBF007F205A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8003DB9B2A351BC4004F2C41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8034C5452A34DEBF007F205A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,10 +85,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8003DB9F2A351BC4004F2C41 /* ShareWWDC */ = {
+			isa = PBXGroup;
+			children = (
+				8003DBAD2A351CBE004F2C41 /* ShareWWDC.entitlements */,
+				8003DBA02A351BC4004F2C41 /* ShareViewController.swift */,
+				8003DBA52A351BC4004F2C41 /* Info.plist */,
+			);
+			path = ShareWWDC;
+			sourceTree = "<group>";
+		};
 		8034C53F2A34DEBF007F205A = {
 			isa = PBXGroup;
 			children = (
 				8034C54A2A34DEBF007F205A /* ChatWWDC */,
+				8003DB9F2A351BC4004F2C41 /* ShareWWDC */,
 				8034C5492A34DEBF007F205A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				8034C5482A34DEBF007F205A /* ChatWWDC.app */,
+				8003DB9E2A351BC4004F2C41 /* ShareWWDC.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +116,7 @@
 		8034C54A2A34DEBF007F205A /* ChatWWDC */ = {
 			isa = PBXGroup;
 			children = (
+				8003DBAE2A351CE3004F2C41 /* ChatWWDC.entitlements */,
 				8034C54B2A34DEBF007F205A /* ChatWWDCApp.swift */,
 				8034C5702A350239007F205A /* Views */,
 				8034C56E2A3501C2007F205A /* ViewModels */,
@@ -117,6 +168,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8003DB9D2A351BC4004F2C41 /* ShareWWDC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8003DBAC2A351BC4004F2C41 /* Build configuration list for PBXNativeTarget "ShareWWDC" */;
+			buildPhases = (
+				8003DB9A2A351BC4004F2C41 /* Sources */,
+				8003DB9B2A351BC4004F2C41 /* Frameworks */,
+				8003DB9C2A351BC4004F2C41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareWWDC;
+			productName = ShareWWDC;
+			productReference = 8003DB9E2A351BC4004F2C41 /* ShareWWDC.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8034C5472A34DEBF007F205A /* ChatWWDC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8034C55B2A34DEC0007F205A /* Build configuration list for PBXNativeTarget "ChatWWDC" */;
@@ -124,10 +192,12 @@
 				8034C5442A34DEBF007F205A /* Sources */,
 				8034C5452A34DEBF007F205A /* Frameworks */,
 				8034C5462A34DEBF007F205A /* Resources */,
+				8003DBA92A351BC4004F2C41 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8003DBA72A351BC4004F2C41 /* PBXTargetDependency */,
 			);
 			name = ChatWWDC;
 			productName = ChatWWDC;
@@ -144,6 +214,9 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					8003DB9D2A351BC4004F2C41 = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					8034C5472A34DEBF007F205A = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -163,11 +236,19 @@
 			projectRoot = "";
 			targets = (
 				8034C5472A34DEBF007F205A /* ChatWWDC */,
+				8003DB9D2A351BC4004F2C41 /* ShareWWDC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8003DB9C2A351BC4004F2C41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8034C5462A34DEBF007F205A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -180,6 +261,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8003DB9A2A351BC4004F2C41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8003DBA12A351BC4004F2C41 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8034C5442A34DEBF007F205A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,7 +287,67 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8003DBA72A351BC4004F2C41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8003DB9D2A351BC4004F2C41 /* ShareWWDC */;
+			targetProxy = 8003DBA62A351BC4004F2C41 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		8003DBAA2A351BC4004F2C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareWWDC/ShareWWDC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KGH5A5RXPH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareWWDC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareWWDC;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chartinsight.ChatWWDC.ShareWWDC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8003DBAB2A351BC4004F2C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareWWDC/ShareWWDC.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KGH5A5RXPH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareWWDC/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShareWWDC;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chartinsight.ChatWWDC.ShareWWDC;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8034C5592A34DEC0007F205A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -316,8 +465,10 @@
 		8034C55C2A34DEC0007F205A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChatWWDC/ChatWWDC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ChatWWDC/Preview Content\"";
@@ -346,8 +497,10 @@
 		8034C55D2A34DEC0007F205A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ChatWWDC/ChatWWDC.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ChatWWDC/Preview Content\"";
@@ -376,6 +529,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8003DBAC2A351BC4004F2C41 /* Build configuration list for PBXNativeTarget "ShareWWDC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8003DBAA2A351BC4004F2C41 /* Debug */,
+				8003DBAB2A351BC4004F2C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8034C5432A34DEBF007F205A /* Build configuration list for PBXProject "ChatWWDC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

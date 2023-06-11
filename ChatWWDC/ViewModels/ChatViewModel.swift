@@ -14,15 +14,29 @@ class ChatViewModel : ObservableObject {
     
     private let openAIService = OpenAIService()
     
-    func sendMessage() {
+    func reset() {
+        messages = []
+    }
+    
+    /// Default behavor sends currentInput property value bound to text input to ChatGPT.
+    /// If url and non-empty urlTranscript are provided, send chatGPT the urlTranscript and show only the url in chat transcript
+    func sendMessage(url: String = "", urlTranscript: String = "") {
+        
+        var messageText = currentInput
+        
+        if urlTranscript.isEmpty == false {
+            messageText = "Summarize the key points of this Apple Developer talk: \(urlTranscript)"
+        }
+        
         let userMessage = Message(id: UUID(),
                                   role: .user,
-                                  content: currentInput,
+                                  url: url,
+                                  content: messageText,
                                   created: Date())
         messages.append(userMessage)
         currentInput = ""
         
-        let agentMessage = Message(id: UUID(), role: .assistant, content: ". . .", created: Date())
+        let agentMessage = Message(id: UUID(), role: .assistant, url: "", content: ". . .", created: Date())
         messages.append(agentMessage)
         let pendingMessageIndex = messages.count - 1
     
@@ -48,6 +62,7 @@ class ChatViewModel : ObservableObject {
 struct Message: Decodable {
     let id: UUID
     let role: SenderRole
+    let url: String // used so the client can show the url and not the full transcript (in content)
     var content: String
     let created: Date
 }

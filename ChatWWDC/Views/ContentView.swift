@@ -8,11 +8,18 @@
 import SwiftUI
 import CoreData
 
+let APP_GROUP = "group.com.chartinsight.chatWWDC"
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
+    @StateObject var webViewModel = WebViewModel()
+    
     @ObservedObject var chatViewModel = ChatViewModel()
     
+    @State var isSummarized = false
+    
+    @AppStorage("newURL", store: UserDefaults(suiteName: APP_GROUP)) var urlToSummarize: String = "https://developer.apple.com/videos/play/wwdc2023/10149"
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
@@ -22,11 +29,37 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Spacer()
+                    Text("ChatWWDC")
+                    Spacer()
+                    Button {
+                        chatViewModel.reset()
+                        urlToSummarize = ""
+                        let userDefaults = UserDefaults(suiteName: APP_GROUP)
+                        userDefaults?.set("", forKey: "newURL")
+                        isSummarized = false
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                }
                 ScrollViewReader { scrollView in
                     ScrollView(.vertical) { // User must scroll off the top to enable programmatic scrolling
                         VStack {
-                            WebView()
-                            .frame(height: 300)
+                            if urlToSummarize.count > 0 {
+                                WebView(urlString: urlToSummarize, webViewModel: webViewModel)
+                                    .frame(height: 300)
+                                if isSummarized == false {
+                                    Button {
+                                        isSummarized = true
+                                        // To avoid showing the full transcript in the UI, pass in the url and transcript
+                                        chatViewModel.sendMessage(url: urlToSummarize, urlTranscript: webViewModel.transcript)
+                                    } label: {
+                                        Text("Summarize \(urlToSummarize)")
+                                    }.buttonStyle(.borderedProminent)
+                                }
+                            }
+                            
                             ForEach(chatViewModel.messages.filter({$0.role != .system}),
                                     id: \.id)
                             { message in
@@ -58,23 +91,15 @@ struct ContentView: View {
                 }
             }
             .padding()
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    EditButton()
-//                }
-//                ToolbarItem {
-//                    Button(action: addItem) {
-//                        Label("Add Item", systemImage: "plus")
-//                    }
-//                }
-//            }
         }
     }
 
     func messageView(message: Message) -> some View {
         HStack {
+            let messageText = message.url.isEmpty ? message.content : "Summarize \(message.url)"
+
             if message.role == .user { Spacer() }
-            Text(message.content)
+            Text(messageText)
                 .padding()
                 .background(message.role == .user ? Color.blue.opacity(0.2) : Color.gray.opacity(0.2))
                 .cornerRadius(15.0)
